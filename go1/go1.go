@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-
+import (
+	"fmt"
+	"math"
+)
+	
 var enlysium bool = true
 var excentrium int = 777
 
@@ -37,6 +40,13 @@ func anotherSum (sumq int) (sume int) {
 	return
 }
 
+func squareRoot(p float64) string {
+	if p < 0 {
+		return squareRoot(-p) + "i"
+	}
+	return fmt.Sprint(math.Sqrt(p))
+}
+
 
 func main() {
 	sumz := 0
@@ -59,4 +69,5 @@ func main() {
 
 		
 	fmt.Println("The sum for all first 3 numbers is: ", anotherSum(3))
+	fmt.Println(squareRoot(3), squareRoot(4))
 }
