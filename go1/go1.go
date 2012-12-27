@@ -28,7 +28,22 @@ func nevoiedeFloat(g float64) float64 {
 	return g*2
 }
 
+func anotherSum (sumq int) (sume int) {
+	sumq = sumq
+	sume = sumq + 3
+	for u := 0; u < 1; u++ {
+		sume += u
+	}
+	return
+}
+
+
 func main() {
+	sumz := 0
+	for i := 0; i < 10; i++ {
+		sumz += i
+	}	
+	
 	const World = "Anything is..."
 	const AnythingIs = true
 	fmt.Println(whatever(15, 25, 0))
@@ -38,5 +53,10 @@ func main() {
 	fmt.Println(nevoiedeFloat(Mic)) 	
 	fmt.Println(nevoiedeFloat(MaiMare)) 
 	
-	fmt.Printf("And the light %g ... went down", World, AnythingIs)
+	fmt.Printf("And the light %g ... went down", World, AnythingIs) 
+
+	fmt.Println(" ", sumz)
+
+		
+	fmt.Println(anotherSum(3))
 }
