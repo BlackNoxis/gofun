@@ -58,5 +58,5 @@ func main() {
 	fmt.Println(" ", sumz)
 
 		
-	fmt.Println(anotherSum(3))
+	fmt.Println("The sum for all first 3 numbers is: ", anotherSum(3))
 }
