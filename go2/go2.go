@@ -4,18 +4,23 @@ import (
 	"fmt"
 	"math"
 )
+	
+func swap(x, y string) (string, string) {
+	return y, x
+}
 
-func mov(a,b,c float64) float64 {
-	if q := math.Pow(a,b); q < c {
-		return c
-	} else {
-		fmt.Printf("Numarul %g este mai mare ca %g\n", q, c)
-	}
-	return c		
+func declared(q, w, o float64) (float64, float64, float64) {
+	return w, q, o
+}
+
+func pow(q, w, o float64) float64 {
+	return math.Pow(q,math.Pow(w,o))	
 }
 
 func main() {
-	fmt.Println(
-		mov(3,3,20), "\n",
-	)
+	a, b := swap("hello", "world")
+	fmt.Println(a, b)
+	
+	q, w, o := declared(math.Pow(pow(2,2,2),3), pow(2,2,2), 10)
+	fmt.Println(q, o, w)
 }
