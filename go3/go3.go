@@ -59,7 +59,7 @@ func main() {
 	em := new(Structure)
         fmt.Println(v.X, v.X, v.Y, putiere(5), um, im, km, lm, em)
 
-	coordCJ = make(map[string]HartaCJ)
+	coordCJ = make(map[string]HartaCJ) // coordCJ([]HartaCJ)
 	coordCJ["Cluj-Napoca"] = HartaCJ{
 		46.46, - 23.36,
 	}
@@ -103,10 +103,14 @@ func main() {
 	for zq := 0; zq < len(aq); zq++ {
 		fmt.Printf("Location %d is %s",
 			zq, aq[zq])
+				if zq == 2 && aq[2] == "Nasaud" {
+					fmt.Printf("\nSo that's why %s is different from %s", aq[2], aq[1])
+					fmt.Println("Because", hBN, "is something else than", hN)
+				}		
 		if aq[1] == "Bistrita\n" && aq[2] == "Nasaud" {
 			if zq == 1 {
 			fmt.Printf("If Location %d is not %s, then %s\n",zq, aq[2], F)
 			}
-		}		
-	}	
+		}	
+	}
 }
