@@ -2,3 +2,5 @@ gofun
 =====
 
 Having fun with GOlang
+
+In order to compile the go programs you need to cd into their folder and execute: go build <file>

@@ -4,6 +4,7 @@ import (
         "fmt"
         // "math" // soon to be used
 	// "strings" // soon to be used
+	// "go/goMap"
 )
 
 type Vertex struct {
