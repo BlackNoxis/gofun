@@ -2,7 +2,8 @@ package main
 
 import (
         "fmt"
-        //"math"
+        // "math" // soon to be used
+	// "strings" // soon to be used
 )
 
 type Vertex struct {
@@ -53,6 +54,8 @@ var hN = map[string]HartaN{
 	"Nasaud":	{47.1659, -24.2400},
 }
 
+var liberiBytes = []byte("+-.,/0123456789=_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:")
+
 func main() {
         v := Vertex{1, "whatever"}
         v.X = 4
@@ -94,6 +97,7 @@ func main() {
 	} else {
 
 		fmt.Println(hBN)
+		// this is wrong > fmt.Println(strings.EqualFold(hBN, hN))		
 	}
 	
 	const F = "Bistrita-Nasaud is not Bistrita!"
@@ -113,4 +117,5 @@ func main() {
 			}
 		}	
 	}
+	fmt.Println(hNN)
 }
