@@ -3,7 +3,7 @@ package main
 import (
         "fmt"
         "runtime"
-	"go4/go4func.go"
+	"./go4func.go"
 )
 
 func main() {
