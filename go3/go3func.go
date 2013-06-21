@@ -11,9 +11,3 @@ func oSYS(q string) string {
 	}
 		return q
 }
-
-func suma (x, y int) int {
-	sum := x + y
-	return sum
-		
-}

@@ -5,7 +5,7 @@ import (
         // "math" // soon to be used
 	// "strings" // soon to be used
 	// "go/goMap"
-	"go3func.go"
+	"./go3func.go"
 )
 
 type Vertex struct {
