@@ -5,7 +5,7 @@ import (
         // "math" // soon to be used
 	// "strings" // soon to be used
 	// "go/goMap"
-	"./go3func.go"
+	// "./go3func.go"
 )
 
 type Vertex struct {
@@ -119,10 +119,12 @@ func main() {
 			}
 		}	
 	}
-	//fmt.Println(hNN)
-	vv := oSYS("Linux")
-	fmt.Printf("%s", vv)
 	
-	qq := suma(3,2)
-	fmt.Printf("\n%d\n", qq)
+	// Go3func.go tests
+	// fmt.Println(hNN)
+	// vv := oSYS("Linux")
+	// fmt.Printf("%s", vv)
+	
+	// qq := suma(3,2)
+	// fmt.Printf("\n%d\n", qq)
 }
