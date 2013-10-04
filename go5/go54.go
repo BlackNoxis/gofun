@@ -22,7 +22,9 @@ func main() {
 	fmt.Printf("Do you want to create it?\n")
 	var w string
 	fmt.Scanf("%s",&w)
-	fmt.Println(os.Mkdir(i, 22))
+	if w == "Yes" || w == "YES" {
+		fmt.Println(os.Mkdir(i, 22))
+	}
         os.Exit(1)
     }
     fi, err := d.Readdir(-1)

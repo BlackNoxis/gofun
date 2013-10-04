@@ -24,9 +24,9 @@ func main() {
 	vv := os.Mkdir("dude", 22)
 	fmt.Println(vv)
 
-	v := Cmd{/usr/bin/equo,/usr/bin/}
-	v.Path = /usr/bin/equo
-	v.Dir = /usr/bin
+	//v := Cmd( `/usr/bin/equo` , )
+	//v.Path = "/usr/bin/equo"
+	//v.Dir = "/usr/bin"
 	
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
         "fmt"
+	// "runtime"
         // "math" // soon to be used
 	// "strings" // soon to be used
 	// "go/goMap"
@@ -106,13 +107,15 @@ func main() {
 	
 	aq := []string{"Cluj-Napoca\n", "Bistrita\n", "Nasaud"}	
 	fmt.Println(aq)
+	fmt.Printf("Previous there was the aq list %s\n", aq)
 	for zq := 0; zq < len(aq); zq++ {
-		fmt.Printf("Location %d is %s",
-			zq, aq[zq])
+		fmt.Printf("Location %d is %s",zq, aq[zq])
+				
 				if zq == 2 && aq[2] == "Nasaud" {
 					fmt.Printf("\nSo that's why %s is different from %s", aq[2], aq[1])
 					fmt.Println("Because", hBN, "is something else than", hN)
-				}		
+				}
+				break
 		if aq[1] == "Bistrita\n" && aq[2] == "Nasaud" {
 			if zq == 1 {
 			fmt.Printf("If Location %d is not %s, then %s\n",zq, aq[2], F)
@@ -128,3 +131,13 @@ func main() {
 	// qq := suma(3,2)
 	// fmt.Printf("\n%d\n", qq)
 }
+
+//func hartapuliimele(vars_hartapulii) {
+	//ddd := os.Chown(
+//}
+
+//type struct vars_hartapulii(d,f,g) {
+	//int ddd;
+	//float64 fff;
+	//long ggg;
+//}
