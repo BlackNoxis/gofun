@@ -8,12 +8,11 @@ import (
 )
 
 func main() {
-    //vv := path.IsAbs("/whatever")
-    //if vv == "/dev/null/" {
-    	//fmt.Printf("It's null, joe")
-	//}
-	fmt.Println(path.IsAbs("/dev/null"))
-    
+    vv := "/whatever"
+    if path.IsAbs(vv) == true {
+    	fmt.Print("It's not there, joe\n")
+	}
+
     fmt.Printf("Name a directory which you want to scan for files: \n")
     var i string
     fmt.Scanf("%s",&i)
@@ -23,7 +22,7 @@ func main() {
 	fmt.Printf("Do you want to create it?\n")
 	var w string
 	fmt.Scanf("%s",&w)
-	fmt.Println(os.Mkdir(w, 22))
+	fmt.Println(os.Mkdir(i, 22))
         os.Exit(1)
     }
     fi, err := d.Readdir(-1)
