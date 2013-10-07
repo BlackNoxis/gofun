@@ -10,13 +10,11 @@ import (
 )
 
 func main() {
-	//fmt.Printf("Hello there, name a directory that you want to see if it exists or not")
-	//var existenta string
-	//fmt.Scanf(&existenta)
-
-
-
-	if Exists("dude") {
+	fmt.Printf("Hello there, name a directory that you want to see if it exists or not:\n")
+	var existenta string
+	fmt.Scanf("%s",&existenta)
+	
+	if Exists(existenta) {
 		fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
 		if files, err := ioutil.ReadDir("./dude"); err != nil {
 			fmt.Println(err)
