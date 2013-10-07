@@ -16,12 +16,12 @@ func main() {
 	
 	if Exists(existenta) {
 		fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
-		if files, err := ioutil.ReadDir("./dude"); err != nil {
+		if files, err := ioutil.ReadDir(existenta); err != nil {
 			fmt.Println(err)
 			} else {
 			fmt.Println(files)
 			}
-		//IfDirectory("dude")
+		//IfDirectory(existenta)
 	} else {
 		var i string
 		fmt.Printf("meh. you want to create it? Yes/No\n")
@@ -37,8 +37,8 @@ func main() {
 			fmt.Printf("Have fun, then\n")
 		}
 	}
-	IfDirectory("dude")
-	//ww := os.Mkdir("dude", 22)
+	IfDirectory(existenta)
+	//ww := os.Mkdir(existenta, 22)
 
         //if fileinfo.IsDir(); err != nil {
         	//fmt.Printf("It's already created. Let's see if it's a file or a directory\n")
