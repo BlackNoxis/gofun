@@ -5,14 +5,16 @@ import (
         //"strings"
         "os"
         //"errors"
+	//"fs"
 )
 
 func main() {
 
 	if Exists("dude") {
-		fmt.Printf("yay. it's there. something\n")
+		fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
+		
 		//IfDirectory("dude")
-		} else {
+	} else {
 		var i string
 		fmt.Printf("meh. you want to create it? Yes/No\n")
 		fmt.Scanf("%s",&i)
