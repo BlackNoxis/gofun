@@ -3,16 +3,26 @@ package main
 import (
         "fmt"
         //"strings"
+	"io/ioutil"
         "os"
         //"errors"
-	//"fs"
+	//. "github.com/kr/fs"
 )
 
 func main() {
+	//fmt.Printf("Hello there, name a directory that you want to see if it exists or not")
+	//var existenta string
+	//fmt.Scanf(&existenta)
+
+
 
 	if Exists("dude") {
 		fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
-		
+		if files, err := ioutil.ReadDir("./dude"); err != nil {
+			fmt.Println(err)
+			} else {
+			fmt.Println(files)
+			}
 		//IfDirectory("dude")
 	} else {
 		var i string
@@ -47,6 +57,11 @@ func Exists(name string) bool {
 	}
     }
     return true
+}
+
+func visit(path string, f os.FileInfo, err error) error {
+	fmt.Printf("Visited: %s\n", path)
+	return nil
 }
 
 func IfDirectory(dirname string) bool {
