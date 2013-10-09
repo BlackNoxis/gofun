@@ -21,18 +21,26 @@ func main() {
 	   if IfDirectory(dirname) == true {
 	     d, err := os.Open(dirname)
 	     if err != nil {
-	   	fmt.Println(err)
+	   	//fmt.Println(err)
 		os.Exit(1)
-		} else {
-		fmt.Println(d)
 		}
+		
 		f, err := d.Readdir(-1)
 		if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		os.Exit(1)
 		}
+			//chroot prereqs
 		   	for _, f := range f {
-			fmt.Println(f.Name(), f.Size())
+			//fmt.Println(f.Name(), f.Size())
+				if f.Name() == "root" {
+				fmt.Printf("oh hello root\n")
+				continue
+				}
+				if f.Name() == "bin" {
+				fmt.Printf("oh hello bin\n")
+				}
+				// will add more verifies, and more professional also
 			}
 	   }
 	   
