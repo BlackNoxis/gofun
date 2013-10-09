@@ -3,7 +3,8 @@ package main
 import (
         "fmt"
         //"strings"
-	"io/ioutil"
+	//"io/ioutil"
+	"path/filepath"
         "os"
         //"errors"
 	//. "github.com/kr/fs"
@@ -15,12 +16,31 @@ func main() {
 	fmt.Scanf("%s",&existenta)
 	
 	if Exists(existenta) {
-		fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
-		if files, err := ioutil.ReadDir(existenta); err != nil {
-			fmt.Println(err)
-			} else {
-			fmt.Println(files)
+	   fmt.Printf("yay. it's there. something. Let's see if it's chroot-able, shall we?\n")
+	   dirname := existenta + string(filepath.Separator)
+	   if IfDirectory(dirname) == true {
+	     d, err := os.Open(dirname)
+	     if err != nil {
+	   	fmt.Println(err)
+		os.Exit(1)
+		} else {
+		fmt.Println(d)
+		}
+		f, err := d.Readdir(-1)
+		if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+		}
+		   	for _, f := range f {
+			fmt.Println(f.Name(), f.Size())
 			}
+	   }
+	   
+	   //if dirscan, err := ioutil.ReadDir(existenta); err != nil {
+		//fmt.Println(err)
+		//} else {
+		//fmt.Println(dirscan)
+		//}
 		//IfDirectory(existenta)
 	} else {
 		var i string
@@ -47,6 +67,8 @@ func main() {
         	//fmt.Printf("It's a already-made directory\n")
         //}
 }
+
+
 
 func Exists(name string) bool {
     if _, err := os.Stat(name); err != nil {
@@ -76,9 +98,9 @@ func IfDirectory(dirname string) bool {
     }
 	switch mode := fi.Mode(); {
     	case mode.IsDir():
-	  fmt.Printf("it's a dir\n")
+	  //fmt.Printf("it's a dir\n")
 	case mode.IsRegular():
-	  fmt.Printf("It's a file\n")
+	  //fmt.Printf("It's a file\n")
 	}
 	return true
 }
