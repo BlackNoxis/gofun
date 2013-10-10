@@ -6,6 +6,7 @@ import (
 	//"io/ioutil"
 	"path/filepath"
         "os"
+	//"runtime"
         //"errors"
 	//. "github.com/kr/fs"
 )
@@ -32,6 +33,7 @@ func main() {
 			//chroot prereqs
 		   	for _, f := range f {
 			//fmt.Println(f.Name(), f.Size())
+			// I should add a mode  isregular ? with an `if`
 				if f.Name() == "root" {
 				fmt.Printf("oh hello root\n")
 				   rootz := dirname + "root" + string(filepath.Separator)
@@ -45,7 +47,7 @@ func main() {
 			 	     fmt.Println(err)
 				     }
 				       for _, passf := range passf {
-						fmt.Println(passf.Name())
+						fmt.Println(f.Name() + "/" + passf.Name())
 				       }
 				continue
 				}
