@@ -24,7 +24,6 @@ func main() {
 	   	//fmt.Println(err)
 		os.Exit(1)
 		}
-		
 		f, err := d.Readdir(-1)
 		if err != nil {
 		//fmt.Println(err)
@@ -35,6 +34,19 @@ func main() {
 			//fmt.Println(f.Name(), f.Size())
 				if f.Name() == "root" {
 				fmt.Printf("oh hello root\n")
+				   rootz := dirname + "root" + string(filepath.Separator)
+				   edd, err := os.Open(rootz)
+				     if err != nil {
+				     fmt.Println(err)
+				     os.Exit(1)
+				     }
+				     passf, err := edd.Readdir(-1)
+				     if err != nil {
+			 	     fmt.Println(err)
+				     }
+				       for _, passf := range passf {
+						fmt.Println(passf.Name())
+				       }
 				continue
 				}
 				if f.Name() == "bin" {
@@ -52,7 +64,7 @@ func main() {
 		//IfDirectory(existenta)
 	} else {
 		var i string
-		fmt.Printf("meh. you want to create it? Yes/No\n")
+		fmt.Printf("meh. it`s not there, Joe. Let`s start the creation procedure. Do you want to create it? Yes/No\n")
 		fmt.Scanf("%s",&i)
 		//i_yes := []string{"Y","yes","Yes","Ye","YES","YeS","Ye","y"}
 		//i_no := []string{"No","N","NO","nO"}
