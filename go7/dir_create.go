@@ -6,10 +6,17 @@ import (
 	//"io/ioutil"
 	"path/filepath"
         "os"
-	//"runtime"
+	"runtime"
         //"errors"
 	//. "github.com/kr/fs"
 )
+
+func init() {
+	if len(os.Args) > 1 {
+		fmt.Printf("Error: You cannot add additional options or path names\n")
+		os.Exit(1)
+	}
+}
 
 func main() {
 	fmt.Printf("Hello there, name a directory that you want to see if it exists or not:\n")
@@ -45,6 +52,7 @@ func main() {
 				     passf, err := edd.Readdir(-1)
 				     if err != nil {
 			 	     fmt.Println(err)
+				     os.Exit(1)
 				     }
 				       for _, passf := range passf {
 						fmt.Println(f.Name() + "/" + passf.Name())
@@ -56,6 +64,8 @@ func main() {
 				}
 				// will add more verifies, and more professional also
 			}
+			fmt.Println(runtime.NumCgoCall()) //out of curiosity, heh
+			//blah, err := exec.Command(equo, "login").Run()
 	   }
 	   
 	   //if dirscan, err := ioutil.ReadDir(existenta); err != nil {
@@ -91,6 +101,9 @@ func main() {
 }
 
 
+type Cmd struct {
+	equo string
+}
 
 func Exists(name string) bool {
     if _, err := os.Stat(name); err != nil {
