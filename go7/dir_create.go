@@ -78,11 +78,11 @@ func main() {
 		fmt.Printf("Do you wish to download the chroot archive? Yes/No\n")
 		fmt.Scanf("%s", &i)
 			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-	                   current_dir := os.Getwd
+	                   //current_dir := os.Getwd
 			   os.Chdir(existenta)
 			   url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
 			   downloadFromUrl(url)
-			   os.Chdir("/current_dir")
+			   //os.Chdir("/current_dir")
 			} else {
 			fmt.Printf("Okay. we will not download the chroot archive")
 			}
