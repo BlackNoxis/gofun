@@ -12,6 +12,7 @@ import (
 )
 func init() {
         if len(os.Args) >= 2 {
+		//if 
                 fmt.Printf("Error: You cannot add additional options or path names\n")
                 os.Exit(1)
         }
@@ -79,15 +80,16 @@ func main() {
 		fmt.Scanf("%s", &i)
 			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
 	                   current_dir, err := os.Getwd()
-			   //fmt.Println(current_dir)
-			   //fmt.Println(err)
+        		   kurrent_dir := strings.TrimSpace(current_dir) //let's translate this into readable string
 			   os.Chdir(existenta)
+			   //fmt.Println(kurrent_dir) //additional verify
 			   url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
 			   downloadFromUrl(url)
-			   if err != nil { 
+			   if err != nil {
                                 os.Exit(1)
 				} else {
-                                os.Chdir(current_dir)
+                                os.Chdir(kurrent_dir)
+				//fmt.Println(kurrent_dir) //additional verify
 			   }
 			} else {
 			fmt.Printf("Okay. we will not download the chroot archive\n")
