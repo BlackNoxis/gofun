@@ -74,17 +74,23 @@ func main() {
                 //i_yes := []string{"Y","yes","Yes","Ye","YES","YeS","Ye","y"}
                 //i_no := []string{"No","N","NO","nO"}
                 if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-                        fmt.Println(os.Mkdir(existenta, 22))
+                        os.Mkdir(existenta, 22) //fmt.Println(os.Mkdir(existenta, 22))
 		fmt.Printf("Do you wish to download the chroot archive? Yes/No\n")
 		fmt.Scanf("%s", &i)
 			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-	                   //current_dir := os.Getwd
+	                   current_dir, err := os.Getwd()
+			   //fmt.Println(current_dir)
+			   //fmt.Println(err)
 			   os.Chdir(existenta)
 			   url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
 			   downloadFromUrl(url)
-			   //os.Chdir("/current_dir")
+			   if err != nil { 
+                                os.Exit(1)
+				} else {
+                                os.Chdir(current_dir)
+			   }
 			} else {
-			fmt.Printf("Okay. we will not download the chroot archive")
+			fmt.Printf("Okay. we will not download the chroot archive\n")
 			}
                 } else {
                         fmt.Printf("Have fun, then\n")
