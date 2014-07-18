@@ -7,8 +7,6 @@ import (
 	"strings"
         "os"
         //"runtime"
-	"net/http"
-	"io"
 )
 func init() {
         if len(os.Args) >= 2 {
@@ -21,7 +19,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	instring, _ := reader.ReadString('\n')
-
+	
 	existenta := strings.TrimSpace(instring)
 
         if Exists(existenta) {
@@ -56,17 +54,17 @@ func main() {
                                      }
                                        for _, passf := range passf {
                                                 fmt.Println(f.Name() + "/" + passf.Name())
-					}
+                                       }
                                 continue
                                 }
                                 if f.Name() == "bin" {
                                 fmt.Printf("oh hello bin\n")
                                 }
                                 // will add more verifies, and more professional also
-                            }
+                        }
 
            }
-
+           
         } else {
                 var i string
                 fmt.Printf("meh. it`s not there, Joe. Let`s start the creation procedure. Do you want to create it? Yes/No\n")
@@ -75,22 +73,11 @@ func main() {
                 //i_no := []string{"No","N","NO","nO"}
                 if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
                         fmt.Println(os.Mkdir(existenta, 22))
-		fmt.Printf("Do you wish to download the chroot archive? Yes/No\n")
-		fmt.Scanf("%s", &i)
-			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-	                   current_dir := os.Getwd
-			   os.Chdir(existenta)
-			   url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
-			   downloadFromUrl(url)
-			   os.Chdir("/current_dir")
-			} else {
-			fmt.Printf("Okay. we will not download the chroot archive")
-			}
                 } else {
                         fmt.Printf("Have fun, then\n")
                 }
         }
-        //IfDirectory(existenta)
+        IfDirectory(existenta)
 }
 
 func Exists(name string) bool {
@@ -121,32 +108,4 @@ func IfDirectory(dirname string) bool {
           //fmt.Printf("It's a file\n")
         }
         return true
-}
-
-func downloadFromUrl(url string) {
-	tokens := strings.Split(url, "/")
-	fileName := tokens[len(tokens)-1]
-	fmt.Println("Downloading", url, "to", fileName)
-
-	output, err := os.Create(fileName)
-	if err != nil {
-		fmt.Println("Error while creating", fileName, "-", err)
-		return
-	}
-	defer output.Close()
-
-	response, err := http.Get(url)
-	if err != nil {
-		fmt.Println("Error while downloading", url, "-", err)
-		return
-	}
-	defer response.Body.Close()
-
-	n, err := io.Copy(output, response.Body)
-	if err != nil {
-		fmt.Println("Error while downloading", url, "-", err)
-		return
-	}
-
-	fmt.Println(n, "bytes downloaded.")
 }
