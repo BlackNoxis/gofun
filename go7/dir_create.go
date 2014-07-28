@@ -1,4 +1,5 @@
 package main
+
 import (
         "fmt"
         "path/filepath"
@@ -12,9 +13,12 @@ import (
 )
 func init() {
         if len(os.Args) >= 2 {
-		//if 
-                fmt.Printf("Error: You cannot add additional options or path names\n")
-                os.Exit(1)
+		if os.Args[1] == "whatever" {
+			fmt.Printf("You have accessed the secret function. Tread carefully.\n")
+                	} else {
+			fmt.Printf("Error: You cannot add additional options or path names\n")
+                	os.Exit(1)
+		}
         }
 }
 func main() {
@@ -31,17 +35,17 @@ func main() {
            if IfDirectory(dirname) == true {
              d, err := os.Open(dirname)
              if err != nil {
-                   //fmt.Println(err)
+                   //fmt.Println(err) //error check
                 os.Exit(1)
                 }
                 f, err := d.Readdir(-1)
                 if err != nil {
-                //fmt.Println(err)
+                //fmt.Println(err) //error check
                 os.Exit(1)
                 }
                            for _, f := range f {
-                        //fmt.Println(f.Name(), f.Size())
-                        // I should add a mode  isregular ? with an `if`
+                        //fmt.Println(f.Name(), f.Size()) //nope, not needed
+                        // I should add a mode  isregular ? with an `if` //or not
                                 if f.Name() == "root" {
                                 fmt.Printf("oh hello root\n")
                                    rootz := dirname + "root" + string(filepath.Separator)
@@ -72,10 +76,10 @@ func main() {
                 var i string
                 fmt.Printf("meh. it`s not there, Joe. Let`s start the creation procedure. Do you want to create it? Yes/No\n")
                 fmt.Scanf("%s",&i)
-                //i_yes := []string{"Y","yes","Yes","Ye","YES","YeS","Ye","y"}
-                //i_no := []string{"No","N","NO","nO"}
+                //i_yes := []string{"Y","yes","Yes","Ye","YES","YeS","Ye","y"} //I've gone mad
+                //i_no := []string{"No","N","NO","nO"} //and again
                 if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-                        os.Mkdir(existenta, 22) //fmt.Println(os.Mkdir(existenta, 22))
+                        os.Mkdir(existenta, 22)
 		fmt.Printf("Do you wish to download the chroot archive? Yes/No\n")
 		fmt.Scanf("%s", &i)
 			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
@@ -83,8 +87,8 @@ func main() {
         		   kurrent_dir := strings.TrimSpace(current_dir) //let's translate this into readable string
 			   os.Chdir(existenta)
 			   //fmt.Println(kurrent_dir) //additional verify
-			   url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
-			   downloadFromUrl(url)
+				url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
+			   	downloadFromUrl(url)
 			   if err != nil {
                                 os.Exit(1)
 				} else {
@@ -98,7 +102,6 @@ func main() {
                         fmt.Printf("Have fun, then\n")
                 }
         }
-        //IfDirectory(existenta)
 }
 
 func Exists(name string) bool {
@@ -113,20 +116,20 @@ func Exists(name string) bool {
 func IfDirectory(dirname string) bool {
     f, err := os.Open(dirname)
     if err != nil {
-        //fmt.Println(err)
+        //fmt.Println(err) //erro check
         return false
     }
     defer f.Close()
     fi, err := f.Stat()
     if err != nil {
-        //fmt.Println(err)
+        //fmt.Println(err) //err check
         return false
     }
         switch mode := fi.Mode(); {
             case mode.IsDir():
-          //fmt.Printf("it's a dir\n")
+          //fmt.Printf("it's a dir\n") //some shows
         case mode.IsRegular():
-          //fmt.Printf("It's a file\n")
+          //fmt.Printf("It's a file\n") //some shows part 2
         }
         return true
 }
@@ -138,23 +141,23 @@ func downloadFromUrl(url string) {
 
 	output, err := os.Create(fileName)
 	if err != nil {
-		fmt.Println("Error while creating", fileName, "-", err)
+		fmt.Println("Error while creating\n", fileName, "-", err)
 		return
 	}
 	defer output.Close()
 
 	response, err := http.Get(url)
 	if err != nil {
-		fmt.Println("Error while downloading", url, "-", err)
+		fmt.Println("Error while downloading\n", url, "-", err)
 		return
 	}
 	defer response.Body.Close()
 
 	n, err := io.Copy(output, response.Body)
 	if err != nil {
-		fmt.Println("Error while downloading", url, "-", err)
+		fmt.Println("Error while downloading\n", url, "-", err)
 		return
 	}
 
-	fmt.Println(n, "bytes downloaded.")
+	fmt.Println(n, "Bytes downloaded.\n")
 }
