@@ -10,6 +10,7 @@ import (
         //"runtime"
 	"net/http"
 	"io"
+	//"./program"
 )
 func init() {
         if len(os.Args) >= 2 {
