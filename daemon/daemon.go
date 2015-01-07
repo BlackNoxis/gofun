@@ -26,6 +26,7 @@ func kreator(name chan string) bool {
 	fmt.Printf("Works\n")
 	}
 	return true
+	fmt.Print("I am alive, as always\n"
 }
 
 func main() {
