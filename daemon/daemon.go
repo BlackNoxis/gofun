@@ -23,10 +23,9 @@ func kreator(name chan string) bool {
 		}
 		whenever := time.Duration(rand.Intn(250))
 		time.Sleep(time.Millisecond * whenever)
-	fmt.Printf("Works\n")
+	fmt.Printf("Works. It is okay\n")
 	}
 	return true
-	fmt.Print("I am alive, as always\n"
 }
 
 func main() {
