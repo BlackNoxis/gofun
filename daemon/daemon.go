@@ -16,14 +16,14 @@ func thename(name chan string) {
 func kreator(name chan string) bool {
 	for {
 		if _, err := os.Stat(<-name); err != nil {
-		if os.IsNotExist(err) {
+		 if os.IsNotExist(err) {
 			fmt.Printf("Does not work\n")
 			return false
-	   }
+		 }
 		}
 		whenever := time.Duration(rand.Intn(250))
 		time.Sleep(time.Millisecond * whenever)
-	fmt.Printf("Works. It is okay\n")
+		fmt.Printf("Works. It is okay\n")
 	}
 	return true
 }
