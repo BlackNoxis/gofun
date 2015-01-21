@@ -1,3 +1,5 @@
+/* LICENSE: GPL v2 */
+
 package main
 
 import (
@@ -34,6 +36,6 @@ func main() {
 	go thename(name)
 	go kreator(name)
 
-    var input string
-    fmt.Scanln(&input)
+	var input string
+	fmt.Scanln(&input)
 }
