@@ -16,5 +16,6 @@ func init() {
 	}
 }
 func main() {
-	omega()
+	var i string
+	omega(i)
 }
