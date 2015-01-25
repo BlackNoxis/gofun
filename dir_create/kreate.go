@@ -8,6 +8,25 @@ import (
 	"path/filepath"
 )
 
+func checkCH(dir string) {
+	d, err := os.Open(dir)
+	if err != nil {
+		os.Exit(1)
+	}
+	f, err := d.Readdir(-1)
+	if err != nil {
+		os.Exit(1)
+	}
+	for _, f := range f {
+	   if f.Name() == "root" {
+		fmt.Printf("oh hello, %v \n", f.Name())
+	   }
+	   if f.Name() == "bin" {
+		fmt.Printf("oh hello, %v \n", f.Name())
+	   }
+	}
+}
+
 func omega() {
 	fmt.Printf("Hello there, name a directory that you want to see if it exists or not:\n")
 	reader := bufio.NewReader(os.Stdin)
@@ -20,44 +39,8 @@ func omega() {
 		fmt.Printf("yay. it's there. something.\n")
 		dirname := existenta + string(filepath.Separator)
 		if IfDirectory(dirname) == true {
-			fmt.Println(dirname)
-			d, err := os.Open(dirname)
-			if err != nil {
-				//fmt.Println(err) //error check
-				os.Exit(1)
-			}
-			f, err := d.Readdir(-1)
-			if err != nil {
-				//fmt.Println(err) //error check
-				os.Exit(1)
-			}
-			for _, f := range f {
-				fmt.Println(f.Name(), f.Size()) //nope, not needed
-				// I should add a mode  isregular ? with an `if` //or not
-				if f.Name() == "root" {
-					fmt.Printf("oh hello root\n")
-					rootz := dirname + "root" + string(filepath.Separator)
-					edd, err := os.Open(rootz)
-					if err != nil {
-						fmt.Println(err)
-						os.Exit(1)
-					}
-					passf, err := edd.Readdir(-1)
-					if err != nil {
-						fmt.Println(err)
-						os.Exit(1)
-					}
-					for _, passf := range passf {
-						fmt.Println(f.Name() + "/" + passf.Name())
-					}
-					continue
-				}
-				if f.Name() == "bin" {
-					fmt.Printf("oh hello bin\n")
-				}
-			 }
+			checkCH(dirname)
 		}
-
 	} else {
 		var i string
 		fmt.Printf("meh. it`s not there, Joe. Let`s start the creation procedure. Do you want to create it? Yes/No\n")
