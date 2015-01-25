@@ -27,44 +27,46 @@ func checkCH(dir string) {
 	}
 }
 
-func omega() {
+func ifYES(i string) bool {
+	if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
+		return true
+	}
+	return false
+}
+
+func sourceCH(dir string) {
+	current_dir, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+	}
+	kurrent_dir := strings.TrimSpace(current_dir)
+	os.Chdir(dir)
+	url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.xz"
+	downloadFromUrl(url)
+	os.Chdir(kurrent_dir)
+}
+
+func omega(i string) {
 	fmt.Printf("Hello there, name a directory that you want to see if it exists or not:\n")
 	reader := bufio.NewReader(os.Stdin)
 	instring, _ := reader.ReadString('\n')
 	existenta := strings.TrimSpace(instring)
 
 	if Exists(existenta) {
-		fmt.Printf("yay. it's there. something.\n")
+		fmt.Printf("Yay. It's there. Something.\n")
 		dirname := existenta + string(filepath.Separator)
 		if IfDirectory(dirname) == true {
 			checkCH(dirname)
 		}
 	} else {
-		var i string
 		fmt.Printf("meh. it`s not there, Joe. Let`s start the creation procedure. Do you want to create it? Yes/No\n")
 		fmt.Scanf("%s", &i)
-		//i_yes := []string{"Y","yes","Yes","Ye","YES","YeS","Ye","y"} //I've gone mad
-		//i_no := []string{"No","N","NO","nO"} //and again
-		if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
+		if ifYES(i) == true {
 			os.Mkdir(existenta, 22)
 			fmt.Printf("Do you wish to download the chroot archive? Yes/No\n")
 			fmt.Scanf("%s", &i)
-			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
-				current_dir, err := os.Getwd()
-				if err != nil {
-					fmt.Println(err)
-				}
-				kurrent_dir := strings.TrimSpace(current_dir) //let's translate this into readable string
-				os.Chdir(existenta)
-				//fmt.Println(kurrent_dir) //additional verify
-				url := "http://pkg.rogentos.ro/~rogentos/iso/Gentoo-Devel-x64" + ".tar.gz"
-				go downloadFromUrl(url)
-				if err != nil {
-					os.Exit(1)
-				} else {
-					os.Chdir(kurrent_dir)
-					//fmt.Println(kurrent_dir) //additional verify
-				}
+			if ifYES(i) == true {
+				sourceCH(existenta)
 			} else {
 				fmt.Printf("Okay. we will not download the chroot archive\n")
 			}
