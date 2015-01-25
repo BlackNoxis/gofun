@@ -20,10 +20,10 @@ func checkCH(dir string) {
 	for _, f := range f {
 	   if f.Name() == "root" {
 		fmt.Printf("oh hello, %v \n", f.Name())
-	   }
+	   } else { os.Exit(1) }
 	   if f.Name() == "bin" {
 		fmt.Printf("oh hello, %v \n", f.Name())
-	   }
+	   } else { os.Exit(1) }
 	}
 }
 
@@ -53,6 +53,9 @@ func omega() {
 			fmt.Scanf("%s", &i)
 			if i == "Yes" || i == "YES" || i == "Y" || i == "y" || i == "Ye" || i == "YE" || i == "yes" || i == "ye" {
 				current_dir, err := os.Getwd()
+				if err != nil {
+					fmt.Println(err)
+				}
 				kurrent_dir := strings.TrimSpace(current_dir) //let's translate this into readable string
 				os.Chdir(existenta)
 				//fmt.Println(kurrent_dir) //additional verify
