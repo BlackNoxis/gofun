@@ -30,9 +30,7 @@ func checkCH(dir string) {
 func omega() {
 	fmt.Printf("Hello there, name a directory that you want to see if it exists or not:\n")
 	reader := bufio.NewReader(os.Stdin)
-
 	instring, _ := reader.ReadString('\n')
-
 	existenta := strings.TrimSpace(instring)
 
 	if Exists(existenta) {
