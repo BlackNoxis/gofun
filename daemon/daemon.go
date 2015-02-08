@@ -1,4 +1,5 @@
-/* LICENSE: GPL v2 */
+/* LICENSE: AGPL v3 
+Copyright Stefan Cristian B. < stefan.cristian @ rogentos.ro > */
 
 package main
 
