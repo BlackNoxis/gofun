@@ -11,7 +11,7 @@ import (
 )
 
 const (
-        DELAY     = 15
+        DELAY     = 1
         NOTEDELAY = 10000
 )
 
@@ -23,16 +23,12 @@ func kreator(name string) bool {
         for {
                 if _, err := os.Stat(name); err != nil {
                  if os.IsNotExist(err) {
-			noteone := notify.NotificationNew("Message from Norad", "it does not work.", "")
-			go sendNote(noteone)
+                        fmt.Printf("Does not work\n")
                         return false
                  }
                 }
-                //whenever := time.Duration(rand.Intn(10000))
                 time.Sleep(time.Second * DELAY)
-                //fmt.Printf("Works. It is okay. %v exists.\n",name)
-		notetwo := notify.NotificationNew("Message from Norad:", "It worked", "")
-		go sendNote(notetwo)
+                fmt.Printf("Works. It is okay. %v exists.\n",name)
         }
         return true
 }
@@ -45,9 +41,9 @@ func sendNote(note *notify.NotifyNotification) {
 
         note.SetTimeout(NOTEDELAY)
         if err := note.Show(); err != nil {
-                // err is never nil? Catching SIGABRT from cgo execution.
-                fmt.Printf("note.Show() caught error: %v\n", err.Message())
-        }
+                //err is never nil? Catching SIGABRT from cgo execution.
+                //fmt.Printf("note.Show() caught error: %v\n", err.Message())
+        } // this sometimes brings you empty error message
         time.Sleep(NOTEDELAY * time.Millisecond)
         note.Close()
 }
@@ -82,14 +78,18 @@ func main() {
         }()
 
         notify.Init("Nora")
-
-        for {
-                time.Sleep(DELAY * time.Second)
-                note := notify.NotificationNew("Message from Nora", "Helpful text goes here.", "")
-                go sendNote(note)
-        }
-
+	for {
 	if IfFile(config.File) == true {
-		go kreator(config.File)
-	} else { os.Exit(1) }
+                time.Sleep(DELAY * time.Second)
+                //note := notify.NotificationNew("Message from Norad:", "N-am reusit, da am incercat macar: " + config.File, "")
+                //go sendNote(note)
+	} else {
+		time.Sleep(DELAY * time.Second)
+		note := notify.NotificationNew("Message from Norad", "Vezi ca mor", "")
+		go sendNote(note)
+		time.Sleep(DELAY * 5 * time.Second)
+		os.Exit(1)
+		fmt.Printf("Am murit.") //doesn`t matter what you do after this point
+	}
+	}
 }
