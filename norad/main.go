@@ -86,7 +86,6 @@ func main() {
 		time.Sleep(DELAY * 5 * time.Second)
 		os.Exit(1)
 		fmt.Printf("Am murit.") //doesn`t matter what you do after this point
-	  } else { time.Sleep(DELAY * time.Second)
-	  }
+	  } else { time.Sleep(DELAY * time.Second) }
 	}
 }
