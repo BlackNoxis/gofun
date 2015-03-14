@@ -4,12 +4,16 @@ Copyright Stefan Cristian B. < stefan.cristian @ rogentos.ro > */
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 	"os"
-	"math/rand"
 )
 
+
+const (
+	DILAI = 10
+)
 
 func kreator(name string) bool {
 	for {
@@ -19,20 +23,31 @@ func kreator(name string) bool {
 			return false
 		 }
 		}
-		whenever := time.Duration(rand.Intn(250))
-		time.Sleep(time.Millisecond * whenever)
-		fmt.Printf("Works. It is okay\n")
+		//whenever := time.Duration(rand.Intn(10000))
+		time.Sleep(time.Second * DILAI)
+		fmt.Printf("Works. It is okay. %v exists.\n",name)
 	}
 	return true
 }
 
-func main() {
-	var name string
-	fmt.Printf("gib the name: \n")
-	fmt.Scanf("%s", &name)
+type Config struct {
+	File string
+}
 
-	if IfFile(name) == true {
-		go kreator(name)
+func main() {
+	file, err := os.Open("config.json")
+
+	if err != nil {
+		fmt.Println("Couldn`t read config file, stopping program.")
+		panic(err)
+	}
+
+	decoder := json.NewDecoder(file)
+	config := &Config{}
+	decoder.Decode(&config)
+
+	if IfFile(config.File) == true {
+		go kreator(config.File)
 	} else { os.Exit(1) }
 
 	var input string
