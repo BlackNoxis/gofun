@@ -79,17 +79,14 @@ func main() {
 
         notify.Init("Nora")
 	for {
-	if IfFile(config.File) == true {
-                time.Sleep(DELAY * time.Second)
-                //note := notify.NotificationNew("Message from Norad:", "N-am reusit, da am incercat macar: " + config.File, "")
-                //go sendNote(note)
-	} else {
+	if IfFile(config.File) == false {
 		time.Sleep(DELAY * time.Second)
 		note := notify.NotificationNew("Message from Norad", "Vezi ca mor", "")
 		go sendNote(note)
 		time.Sleep(DELAY * 5 * time.Second)
 		os.Exit(1)
 		fmt.Printf("Am murit.") //doesn`t matter what you do after this point
-	}
+	  } else { time.Sleep(DELAY * time.Second)
+	  }
 	}
 }
