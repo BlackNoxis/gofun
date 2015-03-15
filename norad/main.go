@@ -19,20 +19,6 @@ type Config struct {
 	File string
 }
 
-func kreator(name string) bool {
-        for {
-                if _, err := os.Stat(name); err != nil {
-                 if os.IsNotExist(err) {
-                        fmt.Printf("Does not work\n")
-                        return false
-                 }
-                }
-                time.Sleep(time.Second * DELAY)
-                fmt.Printf("Works. It is okay. %v exists.\n",name)
-        }
-        return true
-}
-
 func sendNote(note *notify.NotifyNotification) {
         if note == nil {
                 fmt.Printf("Note is nil\n")
